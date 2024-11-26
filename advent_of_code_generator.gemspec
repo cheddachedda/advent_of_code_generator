@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/advent_of_code_generator/version"
+require_relative "lib/advent_of_code_generator"
 
 Gem::Specification.new do |spec|
   spec.name = "advent_of_code_generator"
