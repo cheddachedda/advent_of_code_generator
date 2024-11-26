@@ -1,4 +1,7 @@
 # frozen_string_literal: true
 
-require "advent_of_code_generator"
 require "debug"
+
+Dir[File.join(__dir__, "../lib/**/*.rb")].each do |file|
+  require file
+end
