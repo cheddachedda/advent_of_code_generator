@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+Dir[File.join(__dir__, "../lib/**/*.rb")].each do |file|
+  require file
+end
+
+require "irb"
+IRB.start(__FILE__)
