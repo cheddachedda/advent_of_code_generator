@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |file|
       (file == gemspec) ||
-        file.start_with?(*%w[spec/ .git .github appveyor])
+        file.start_with?(*%w[spec/ .git .github .rspec .rubocop.yml appveyor Rakefile])
     end
   end
   spec.bindir = "exe"
