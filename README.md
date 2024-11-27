@@ -1,3 +1,39 @@
 # Advent of Code Generator
 
 A Ruby gem that generates daily puzzle templates for Advent of Code.
+
+## Usage
+
+```sh
+  # With default arguments
+  aoc generate
+
+  # With custom arguments
+  aoc generate -y=2023 -d=1 -u=cheddachedda -s=$SESSION_KEY
+```
+
+### Options
+
+```sh
+  -y, [--year=N]             # Defaults to the current year.
+                             # Default: 2024
+  -d, [--day=N]              # Defaults to the current day.
+                             # Default: 28
+  -u, [--username=USERNAME]  # Files will be generated in a directory with this name. Useful for multi-user repos.
+                             # Default: advent_of_code
+  -s, [--session=SESSION]    # Your adventofcode.com session key. Necessary for scraping data files and specs for part two.
+```
+
+## Generated file structure
+
+```sh
+adventofcode/
+│
+└── year_2024/
+    |
+    └── day_01/
+        ├── main.rb
+        ├── spec.rb
+        ├── data.txt
+        └── README.md
+```
