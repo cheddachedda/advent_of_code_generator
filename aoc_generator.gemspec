@@ -3,7 +3,7 @@
 require_relative "lib/advent_of_code_generator"
 
 Gem::Specification.new do |spec|
-  spec.name = "advent_of_code_generator"
+  spec.name = "aoc_generator"
   spec.version = AdventOfCodeGenerator::VERSION
   spec.authors = ["Daniel Nguyen"]
   spec.email = ["daniel.n.q.nguyen@gmail.com"]

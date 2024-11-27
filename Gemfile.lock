@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    advent_of_code_generator (0.1.0)
+    aoc_generator (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -89,7 +89,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  advent_of_code_generator!
+  aoc_generator!
   debug (~> 1.9)
   nokogiri (~> 1.16)
   rake (~> 13.2)
