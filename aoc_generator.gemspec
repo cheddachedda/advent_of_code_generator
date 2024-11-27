@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["rubygems_mfa_required"] = "true"
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
+  spec.metadata["changelog_uri"] = "https://github.com/cheddachedda/advent_of_code_generator/blob/main/CHANGELOG.md"
 
   gemspec = File.basename(__FILE__)
   spec.files = Dir.chdir(__dir__) do
