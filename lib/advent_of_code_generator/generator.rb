@@ -18,10 +18,11 @@ module AdventOfCodeGenerator
   class Generator
     FileData = Struct.new(:path, :content)
 
-    def initialize(options)
+    def initialize(options, scraper)
       @year = options[:year].to_s
       @day = options[:day].to_s.rjust(2, "0") # Ensures day is two digits (e.g., "01" instead of "1")
       @username = options[:username].gsub(/[_\-\.\s]/, "")
+      @scraper = scraper
     end
 
     def call
@@ -42,14 +43,14 @@ module AdventOfCodeGenerator
 
     def readme
       path = "#{daily_directory}/README.md"
-      content = ""
+      content = @scraper.puzzle_description
 
       FileData.new(path, content)
     end
 
     def data_file
       path = "#{daily_directory}/data.txt"
-      content = ""
+      content = @scraper.input_data
 
       FileData.new(path, content)
     end

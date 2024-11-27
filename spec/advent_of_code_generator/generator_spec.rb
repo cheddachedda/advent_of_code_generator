@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe AdventOfCodeGenerator::Generator do
-  subject(:instance) { described_class.new(year: 2024, day: 1, username: "username") }
+  subject(:instance) { described_class.new({ year: 2024, day: 1, username: "username" }, scraper) }
+
+  let(:scraper) do
+    instance_double(
+      AdventOfCodeGenerator::Scraper,
+      puzzle_description: "<article>Test puzzle description</article>\n",
+      input_data: "1234\n5678\n"
+    )
+  end
 
   after do
     FileUtils.rm_rf("username")
@@ -10,13 +18,22 @@ RSpec.describe AdventOfCodeGenerator::Generator do
   it "creates a README file" do
     instance.call
 
-    expect(File.read("username/year_2024/day_01/README.md")).to eq("")
+    expect(File.read("username/year_2024/day_01/README.md")).to eq(
+      <<~MARKDOWN
+        <article>Test puzzle description</article>
+      MARKDOWN
+    )
   end
 
   it "creates a data.txt file" do
     instance.call
 
-    expect(File.read("username/year_2024/day_01/data.txt")).to eq("")
+    expect(File.read("username/year_2024/day_01/data.txt")).to eq(
+      <<~TEXT
+        1234
+        5678
+      TEXT
+    )
   end
 
   it "creates a main.rb file" do
