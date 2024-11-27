@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "fileutils"
+
 module AdventOfCodeGenerator
   # Creates directory structure and files for daily Advent of Code puzzles:
   #

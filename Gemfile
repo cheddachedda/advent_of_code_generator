@@ -7,7 +7,7 @@ gemspec
 ruby file: ".tool-versions"
 
 gem "debug", "~> 1.9"
-gem "file_utils", "~> 1.1"
+gem "fileutils", "~> 1.7"
 gem "nokogiri", "~> 1.16"
 gem "rake", "~> 13.2"
 gem "rspec", "~> 3.13"
