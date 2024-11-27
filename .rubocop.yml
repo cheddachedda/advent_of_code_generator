@@ -7,6 +7,9 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.3
 
+Metrics/MethodLength:
+  CountAsOne: heredoc
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
