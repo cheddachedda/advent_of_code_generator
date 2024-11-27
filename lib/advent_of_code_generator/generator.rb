@@ -18,10 +18,10 @@ module AdventOfCodeGenerator
   class Generator
     FileData = Struct.new(:path, :content)
 
-    def initialize(year = Time.now.year, day = Time.now.day, username = "advent_of_code")
-      @year = year.to_s
-      @day = day.to_s.rjust(2, "0") # Ensures day is two digits (e.g., "01" instead of "1")
-      @username = username.gsub(/[_\-\.\s]/, "")
+    def initialize(options)
+      @year = options[:year].to_s
+      @day = options[:day].to_s.rjust(2, "0") # Ensures day is two digits (e.g., "01" instead of "1")
+      @username = options[:username].gsub(/[_\-\.\s]/, "")
     end
 
     def call

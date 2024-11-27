@@ -5,10 +5,10 @@ require "net/http"
 module AdventOfCodeGenerator
   # Fetches puzzle descriptions and input data from adventofcode.com.
   class Scraper
-    def initialize(year, day, session_key = nil)
-      @year = year
-      @day = day.to_i
-      @session_key = session_key
+    def initialize(options)
+      @year = options[:year]
+      @day = options[:day]
+      @session_key = options[:session]
     end
 
     def puzzle_description

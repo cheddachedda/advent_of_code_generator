@@ -11,7 +11,7 @@ RSpec.describe AdventOfCodeGenerator::Scraper do
     end
 
     it "fetches the puzzle description from adventofcode.com" do
-      scraper = described_class.new(2024, 1, "fake_session_key")
+      scraper = described_class.new(year: 2024, day: 1, session: "fake_session_key")
 
       expect(scraper.puzzle_description).to eq("<article>Test puzzle description</article>")
     end
@@ -26,13 +26,13 @@ RSpec.describe AdventOfCodeGenerator::Scraper do
       end
 
       it "fetches the input file from adventofcode.com" do
-        scraper = described_class.new(2024, 1, "fake_session_key")
+        scraper = described_class.new(year: 2024, day: 1, session: "fake_session_key")
 
         expect(scraper.input_data).to eq("1234\n5678\n")
       end
 
       it "caches the response" do
-        scraper = described_class.new(2024, 1, "fake_session_key")
+        scraper = described_class.new(year: 2024, day: 1, session: "fake_session_key")
 
         2.times { scraper.input_data }
 
@@ -42,13 +42,13 @@ RSpec.describe AdventOfCodeGenerator::Scraper do
 
     context "without a session key" do
       it "returns nil" do
-        scraper = described_class.new(2024, 1)
+        scraper = described_class.new(year: 2024, day: 1)
 
         expect(scraper.input_data).to be_nil
       end
 
       it "outputs a warning" do
-        scraper = described_class.new(2024, 1)
+        scraper = described_class.new(year: 2024, day: 1)
 
         expect { scraper.input_data }.to output(/No session key/).to_stderr
       end

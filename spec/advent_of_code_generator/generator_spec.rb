@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe AdventOfCodeGenerator::Generator do
-  subject(:instance) { described_class.new(2024, 1, "username") }
+  subject(:instance) { described_class.new(year: 2024, day: 1, username: "username") }
 
   after do
     FileUtils.rm_rf("username")
