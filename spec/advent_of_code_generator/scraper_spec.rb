@@ -7,13 +7,13 @@ RSpec.describe AdventOfCodeGenerator::Scraper do
     before do
       stub_request(:get, "https://adventofcode.com/2024/day/1")
         .with(headers: { "Cookie" => "session=fake_session_key" })
-        .to_return(body: "<article>Test puzzle description</article>")
+        .to_return(body: "<article><p>Test puzzle description<p></article>")
     end
 
     it "fetches the puzzle description from adventofcode.com" do
       scraper = described_class.new(year: 2024, day: 1, session: "fake_session_key")
 
-      expect(scraper.puzzle_description).to eq("<article>Test puzzle description</article>")
+      expect(scraper.puzzle_description).to eq("Test puzzle description")
     end
   end
 
