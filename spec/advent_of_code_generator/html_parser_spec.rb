@@ -10,6 +10,14 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
         <p>Here's some <code>inline code</code> and <em><code>123</code></em>.</p>
         <p>Another variation with <code><em>456</em></code>.</p>
         <pre><code>sample\ntest\ninput</code></pre>
+        <ul>
+          <li>First bullet point</li>
+          <li>Second with <code>inline code</code></li>
+        </ul>
+        <ol>
+          <li>First numbered item</li>
+          <li>Second with <em>emphasis</em></li>
+        </ol>
       </article>
       <article>
         <h2>--- Part Two ---</h2>
@@ -34,6 +42,12 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
       test
       input
       ```
+
+      - First bullet point
+      - Second with `inline code`
+
+      1. First numbered item
+      1. Second with **emphasis**
 
       ## --- Part Two ---
 

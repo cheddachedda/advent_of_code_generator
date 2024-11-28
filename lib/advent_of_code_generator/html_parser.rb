@@ -49,13 +49,18 @@ module AdventOfCodeGenerator
 
     def process_node(node)
       case node.name
-      when "h2"
-        "## #{node.text}\n"
-      when "p"
-        "#{process_paragraph(node)}\n"
-      when "pre"
-        "```sh\n#{node.text.strip}\n```\n"
+      when "h2" then "## #{node.text}\n"
+      when "ul" then "#{process_list(node, "-")}\n"
+      when "ol" then"#{process_list(node, "1.")}\n"
+      when "p" then "#{process_paragraph(node)}\n"
+      when "pre" then "```sh\n#{node.text.strip}\n```\n"
       end
+    end
+
+    def process_list(list_node, marker)
+      list_node.css("li").map do |item|
+        "#{marker} #{process_paragraph(item)}"
+      end.join("\n")
     end
 
     def process_paragraph(para)
