@@ -13,7 +13,7 @@ RSpec.describe AdventOfCodeGenerator::Scraper do
     it "fetches the puzzle description from adventofcode.com" do
       scraper = described_class.new(year: 2024, day: 1, session: "fake_session_key")
 
-      expect(scraper.puzzle_description).to eq("Test puzzle description")
+      expect(scraper.puzzle_description).to eq("<article><p>Test puzzle description<p></article>")
     end
   end
 

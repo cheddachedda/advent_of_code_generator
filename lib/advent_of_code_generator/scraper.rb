@@ -6,11 +6,10 @@ require_relative "html_parser"
 module AdventOfCodeGenerator
   # Fetches puzzle descriptions and input data from adventofcode.com.
   class Scraper
-    def initialize(options, parser = AdventOfCodeGenerator::HTMLParser)
+    def initialize(options)
       @year = options[:year]
       @day = options[:day]
       @session_key = options[:session]
-      @parser = parser
     end
 
     def puzzle_description
@@ -19,7 +18,7 @@ module AdventOfCodeGenerator
       uri = URI("https://adventofcode.com/#{@year}/day/#{@day}")
       response = Net::HTTP.get_response(uri, headers)
 
-      @parser.new(response.body).call
+      response.body
     end
 
     def input_data
