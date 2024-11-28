@@ -1,6 +1,10 @@
 # Changelog
 
-## [0.1.3] - 2024-11-28
+## [0.1.4] - 2024-11-28
+
+- Add test data to spec file
+
+## [0.1.3]
 
 - Allow to read a AOC_SESSION environment variable
 - Change file names
