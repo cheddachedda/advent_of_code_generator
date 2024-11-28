@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.6] - 2024-11-29
+
+- Handle <ul> and <ol> HTML elements
+
 ## [0.1.5] - 2024-11-28
 
 - Generate main file with class methods, rather than instance methods
