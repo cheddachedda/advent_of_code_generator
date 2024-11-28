@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe AdventOfCodeGenerator::Generator do
-  subject(:instance) { described_class.new({ year: 2024, day: 1, username: "username" }, scraper) }
+  subject(:instance) { described_class.new({ year: 2024, day: 1, username: "username" }, scraped_data) }
 
-  let(:scraper) do
-    instance_double(
-      AdventOfCodeGenerator::Scraper,
+  let(:scraped_data) do
+    {
       puzzle_description: "<article>Test puzzle description</article>\n",
       input_data: "1234\n5678\n"
-    )
+    }
   end
 
   after do

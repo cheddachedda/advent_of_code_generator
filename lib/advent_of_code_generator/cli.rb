@@ -38,8 +38,8 @@ module AdventOfCodeGenerator
                   default: ENV.fetch("AOC_SESSION", nil)
 
     def generate
-      scraper = AdventOfCodeGenerator::Scraper.new(options)
-      generator = AdventOfCodeGenerator::Generator.new(options, scraper)
+      scraped_data = AdventOfCodeGenerator::Scraper.new(options).call
+      generator = AdventOfCodeGenerator::Generator.new(options, scraped_data)
 
       generator.call
     end
