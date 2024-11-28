@@ -6,7 +6,9 @@ RSpec.describe AdventOfCodeGenerator::Generator do
   let(:scraped_data) do
     {
       puzzle_description: "<article>Test puzzle description</article>\n",
-      input_data: "1234\n5678\n"
+      input_data: "1234\n5678\n",
+      test_input: %W[1\n2\n3\n4 5\n6\n7\n8],
+      test_expectations: [123, 456]
     }
   end
 
@@ -73,16 +75,26 @@ RSpec.describe AdventOfCodeGenerator::Generator do
         require_relative "day_01"
 
         RSpec.describe Username::Year2024::Day01 do
-          subject(:puzzle) { described_class.new(input) }
-
-          let(:input) { File.read("\#{__dir__}/data.txt") }
-
           it "solves Part One" do
-            expect(puzzle.part_one).to eq("")
+            input = <<~INPUT
+              1
+              2
+              3
+              4
+            INPUT
+
+            expect(described_class.part_one(input)).to eq(123)
           end
 
           xit "solves Part Two" do
-            expect(puzzle.part_two).to eq("some other value")
+            input = <<~INPUT
+              5
+              6
+              7
+              8
+            INPUT
+
+            expect(described_class.part_two(input)).to eq(456)
           end
         end
       RUBY

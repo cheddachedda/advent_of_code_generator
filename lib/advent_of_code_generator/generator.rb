@@ -86,22 +86,28 @@ module AdventOfCodeGenerator
 
     def spec_file
       path = "#{daily_directory}/day_#{@day}_spec.rb"
+      input, expectations = @scraped_data.values_at(:test_input, :test_expectations)
+      input ||= ["", ""]
       content = <<~RUBY
         # frozen_string_literal: true
 
         require_relative "day_#{@day}"
 
         RSpec.describe #{@username.capitalize}::Year#{@year}::Day#{@day} do
-          subject(:puzzle) { described_class.new(input) }
-
-          let(:input) { File.read("\#{__dir__}/data.txt") }
-
           it "solves Part One" do
-            expect(puzzle.part_one).to eq("")
+            input = <<~INPUT
+              #{input[0]&.gsub("\n", "\n      ")}
+            INPUT
+
+            expect(described_class.part_one(input)).to eq(#{expectations[0]})
           end
 
           xit "solves Part Two" do
-            expect(puzzle.part_two).to eq("some other value")
+            input = <<~INPUT
+              #{input[1]&.gsub("\n", "\n      ")}
+            INPUT
+
+            expect(described_class.part_two(input)).to eq(#{expectations[1]})
           end
         end
       RUBY
