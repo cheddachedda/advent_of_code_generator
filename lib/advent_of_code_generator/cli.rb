@@ -32,7 +32,10 @@ module AdventOfCodeGenerator
     method_option :session,
                   required: false,
                   aliases: "-s",
-                  desc: "Your adventofcode.com session key. Necessary for scraping data files and specs for part two."
+                  desc: "Your adventofcode.com session key. " \
+                        "Necessary for scraping data files and specs for part two. " \
+                        "Defaults to a AOC_SESSION environment variable if it exists.",
+                  default: ENV.fetch("AOC_SESSION", nil)
 
     def generate
       scraper = AdventOfCodeGenerator::Scraper.new(options)
