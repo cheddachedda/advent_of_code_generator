@@ -1,6 +1,10 @@
 # Changelog
 
-## [0.1.4] - 2024-11-28
+## [0.1.5] - 2024-11-28
+
+- Generate main file with class methods, rather than instance methods
+
+## [0.1.4]
 
 - Add test data to spec file
 
