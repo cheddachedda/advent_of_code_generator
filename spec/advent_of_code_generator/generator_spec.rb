@@ -47,15 +47,11 @@ RSpec.describe AdventOfCodeGenerator::Generator do
         module Username
           module Year2024
             class Day01
-              def initialize(input)
-                @input = input
-              end
-
-              def part_one
+              def self.part_one(input)
                 raise NotImplementedError
               end
 
-              def part_two
+              def self.part_two(input)
                 raise NotImplementedError
               end
             end

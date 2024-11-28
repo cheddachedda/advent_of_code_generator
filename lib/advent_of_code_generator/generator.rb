@@ -65,15 +65,11 @@ module AdventOfCodeGenerator
         module #{@username.capitalize}
           module Year#{@year}
             class Day#{@day}
-              def initialize(input)
-                @input = input
-              end
-
-              def part_one
+              def self.part_one(input)
                 raise NotImplementedError
               end
 
-              def part_two
+              def self.part_two(input)
                 raise NotImplementedError
               end
             end
