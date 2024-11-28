@@ -38,14 +38,22 @@ module AdventOfCodeGenerator
                   default: ENV.fetch("AOC_SESSION", nil)
 
     def generate
-      scraped_data = AdventOfCodeGenerator::Scraper.new(options).call
-      generator = AdventOfCodeGenerator::Generator.new(options, scraped_data)
+      generator = AdventOfCodeGenerator::Generator.new(options, content)
 
       generator.call
     end
 
     def self.exit_on_failure?
       true
+    end
+
+    private
+
+    def content
+      scraped_data = AdventOfCodeGenerator::Scraper.new(options).call
+      parsed_data = AdventOfCodeGenerator::HTMLParser.new(scraped_data[:puzzle_description]).call
+
+      scraped_data.merge(parsed_data)
     end
   end
 end

@@ -1,80 +1,59 @@
 # frozen_string_literal: true
 
 RSpec.describe AdventOfCodeGenerator::HTMLParser do
-  context "with a simple article" do
-    let(:input) do
-      <<~HTML
-        <article>
-          <h2>--- Part One ---</h2>
-          <p>Here is some <em>emphasised</em> text with a <a href="https://example.com">link</a>.</p>
-          <pre><code>sample code\ngoes here</code></pre>
-        </article>
-      HTML
-    end
-    let(:expected_output) do
-      <<~MARKDOWN.strip
-        ## --- Part One ---
-
-        Here is some **emphasised** text with a [link](https://example.com).
-
-        ```sh
-        sample code
-        goes here
-        ```
-      MARKDOWN
-    end
-
-    specify do
-      expect(described_class.new(input).call).to eq(expected_output)
-    end
+  let(:result) { described_class.new(html_content).call }
+  let(:html_content) do
+    <<~HTML
+      <article>
+        <h2>--- Part One ---</h2>
+        <p>Here's a normal paragraph with <em>emphasised text</em> and a <a href="https://example.com">link</a>.</p>
+        <p>Here's some <code>inline code</code> and <em><code>123</code></em>.</p>
+        <p>Another variation with <code><em>456</em></code>.</p>
+        <pre><code>sample\ntest\ninput</code></pre>
+      </article>
+      <article>
+        <h2>--- Part Two ---</h2>
+        <p>Part two with <code><em>test value</em></code> and more text.</p>
+        <pre><code>more\ntest\ninput</code></pre>
+      </article>
+    HTML
   end
 
-  context "with code and emphasis combinations" do
-    let(:input) do
-      <<~HTML
-        <article>
-          <p>Text with <code><em>emphasised code</em></code> and <em><code>alternate format</code></em>.</p>
-        </article>
-      HTML
-    end
-    let(:expected_output) do
-      <<~MARKDOWN.strip
-        Text with **`emphasised code`** and **`alternate format`**.
-      MARKDOWN
-    end
+  it "converts HTML to formatted markdown" do
+    expected_markdown = <<~MARKDOWN
+      ## --- Part One ---
 
-    specify do
-      expect(described_class.new(input).call).to eq(expected_output)
-    end
+      Here's a normal paragraph with **emphasised text** and a [link](https://example.com).
+
+      Here's some `inline code` and **`123`**.
+
+      Another variation with **`456`**.
+
+      ```sh
+      sample
+      test
+      input
+      ```
+
+      ## --- Part Two ---
+
+      Part two with **`test value`** and more text.
+
+      ```sh
+      more
+      test
+      input
+      ```
+    MARKDOWN
+
+    expect(result[:puzzle_description]).to eq(expected_markdown)
   end
 
-  context "with multiple articles" do
-    let(:input) do
-      <<~HTML
-        <article>
-          <h2>--- Part One ---</h2>
-          <p>First part</p>
-        </article>
-        <article>
-          <h2>--- Part Two ---</h2>
-          <p>Second part</p>
-        </article>
-      HTML
-    end
-    let(:expected_output) do
-      <<~MARKDOWN.strip
-        ## --- Part One ---
+  it "extracts test inputs from pre-formatted code blocks" do
+    expect(result[:test_input]).to eq(%W[sample\ntest\ninput more\ntest\ninput])
+  end
 
-        First part
-
-        ## --- Part Two ---
-
-        Second part
-      MARKDOWN
-    end
-
-    specify do
-      expect(described_class.new(input).call).to eq(expected_output)
-    end
+  it "extracts test expectations from emphasised code blocks" do
+    expect(result[:test_expectations]).to eq([123, 456, "test value"])
   end
 end

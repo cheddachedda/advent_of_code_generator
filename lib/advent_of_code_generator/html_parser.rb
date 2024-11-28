@@ -5,20 +5,41 @@ require "nokogiri"
 module AdventOfCodeGenerator
   # Converts HTML puzzle descriptions from adventofcode.com into markdown format.
   class HTMLParser
-    def initialize(input)
-      @input = input
+    def initialize(html_content)
+      @html_content = html_content
     end
 
     def call
-      articles.map do |node|
-        process_article(node)
-      end.join("\n").strip
+      {
+        puzzle_description: part_descriptions.join("\n"),
+        test_input:,
+        test_expectations:
+      }
     end
 
     private
 
+    def part_descriptions
+      @part_descriptions ||= articles.map do |node|
+        process_article(node).join("\n")
+      end
+    end
+
+    def test_input
+      part_descriptions.map { |desc| desc.scan(/```sh\n(.*?)\n```/m) }.flatten
+    end
+
+    def test_expectations
+      part_descriptions
+        .flat_map { |desc| desc.scan(/\*\*`(.*?)`\*\*/) }
+        .map do |matches|
+          match = matches.first
+          match&.match?(/\A\d+\z/) ? match.to_i : match
+        end.compact
+    end
+
     def articles
-      doc = Nokogiri::HTML(@input)
+      doc = Nokogiri::HTML(@html_content)
       doc.css("article")
     end
 
