@@ -102,7 +102,7 @@ module AdventOfCodeGenerator
             expect(described_class.part_one(input)).to eq(#{expectations[0]})
           end
 
-          xit "solves Part Two" do
+          it "solves Part Two", skip: "not implemented yet" do
             input = <<~INPUT
               #{input[1]&.gsub("\n", "\n      ")}
             INPUT

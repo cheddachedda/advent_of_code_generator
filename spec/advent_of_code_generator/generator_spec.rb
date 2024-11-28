@@ -86,7 +86,7 @@ RSpec.describe AdventOfCodeGenerator::Generator do
             expect(described_class.part_one(input)).to eq(123)
           end
 
-          xit "solves Part Two" do
+          it "solves Part Two", skip: "not implemented yet" do
             input = <<~INPUT
               5
               6
