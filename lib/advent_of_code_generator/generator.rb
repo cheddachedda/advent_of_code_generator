@@ -12,8 +12,8 @@ module AdventOfCodeGenerator
   #   └── year_2024/
   #       |
   #       └── day_01/
-  #           ├── main.rb
-  #           ├── spec.rb
+  #           ├── day_01.rb
+  #           ├── day_01_spec.rb
   #           ├── data.txt
   #           └── README.md
   #
@@ -58,7 +58,7 @@ module AdventOfCodeGenerator
     end
 
     def main_file
-      path = "#{daily_directory}/main.rb"
+      path = "#{daily_directory}/day_#{@day}.rb"
       content = <<~RUBY
         # frozen_string_literal: true
 
@@ -85,11 +85,11 @@ module AdventOfCodeGenerator
     end
 
     def spec_file
-      path = "#{daily_directory}/spec.rb"
+      path = "#{daily_directory}/day_#{@day}_spec.rb"
       content = <<~RUBY
         # frozen_string_literal: true
 
-        require_relative "main"
+        require_relative "day_#{@day}"
 
         RSpec.describe #{@username.capitalize}::Year#{@year}::Day#{@day} do
           subject(:puzzle) { described_class.new(input) }

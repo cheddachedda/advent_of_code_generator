@@ -31,8 +31,8 @@ adventofcode/
 └── year_2024/
     |
     └── day_01/
-        ├── main.rb
-        ├── spec.rb
+        ├── day_01.rb
+        ├── day_01_spec.rb
         ├── data.txt
         └── README.md
 ```

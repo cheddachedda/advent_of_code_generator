@@ -39,7 +39,7 @@ RSpec.describe AdventOfCodeGenerator::Generator do
   it "creates a main.rb file" do
     instance.call
 
-    expect(File.read("username/year_2024/day_01/main.rb")).to eq(
+    expect(File.read("username/year_2024/day_01/day_01.rb")).to eq(
       <<~RUBY
         # frozen_string_literal: true
 
@@ -67,11 +67,11 @@ RSpec.describe AdventOfCodeGenerator::Generator do
   it "creates a spec.rb file" do
     instance.call
 
-    expect(File.read("username/year_2024/day_01/spec.rb")).to eq(
+    expect(File.read("username/year_2024/day_01/day_01_spec.rb")).to eq(
       <<~RUBY
         # frozen_string_literal: true
 
-        require_relative "main"
+        require_relative "day_01"
 
         RSpec.describe Username::Year2024::Day01 do
           subject(:puzzle) { described_class.new(input) }
