@@ -43,10 +43,15 @@ module AdventOfCodeGenerator
     end
 
     def generate_file(file_data)
-      return if file_data.require_session && @session.nil?
-      return if File.exist?(file_data.path) && !file_data.allow_overwrite
+      return skip_file(file_data.path) if file_data.require_session && @session.nil?
+      return skip_file(file_data.path) if File.exist?(file_data.path) && !file_data.allow_overwrite
 
       File.write(file_data.path, file_data.content)
+      puts "    \e[32mcreate\e[0m  #{file_data.path}"
+    end
+
+    def skip_file(path)
+      puts "      \e[33mskip\e[0m  #{path}"
     end
 
     def puzzle_description
