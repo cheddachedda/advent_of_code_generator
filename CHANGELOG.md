@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.9] - 2024-12-02
+
+- Output to stdout which files were generated
+
 ## [0.1.8] - 2024-12-02
 
 - Use commented-out code in templates
