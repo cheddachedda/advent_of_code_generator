@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 RSpec.describe AdventOfCodeGenerator::Generator do
-  subject(:instance) { described_class.new({ year: 2024, day: 1, username: "username" }, scraped_data) }
+  subject(:instance) { described_class.new(options, scraped_data) }
 
+  let(:options) do
+    {
+      year: 2024,
+      day: 1,
+      username: "username",
+      session: "session"
+    }
+  end
   let(:scraped_data) do
     {
       puzzle_description: "<article>Test puzzle description</article>\n",
@@ -118,6 +126,26 @@ RSpec.describe AdventOfCodeGenerator::Generator do
       # Other files should retain their modifications
       expect(File.read("username/year_2024/day_01/day_01.rb")).to eq("modified code")
       expect(File.read("username/year_2024/day_01/day_01_spec.rb")).to eq("modified spec")
+    end
+  end
+
+  context "when session key is nil" do
+    let(:options) do
+      {
+        year: 2024,
+        day: 1,
+        username: "username",
+        session: nil
+      }
+    end
+
+    it "does not create puzzle description or data files", :aggregate_failures do
+      instance.call
+
+      expect(File.exist?("username/year_2024/day_01/PUZZLE_DESCRIPTION.md")).to be false
+      expect(File.exist?("username/year_2024/day_01/data.txt")).to be false
+      expect(File.exist?("username/year_2024/day_01/day_01.rb")).to be true
+      expect(File.exist?("username/year_2024/day_01/day_01_spec.rb")).to be true
     end
   end
 end

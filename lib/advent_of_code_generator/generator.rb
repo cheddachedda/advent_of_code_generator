@@ -22,6 +22,7 @@ module AdventOfCodeGenerator
       @year = options[:year].to_s
       @day = options[:day].to_s.rjust(2, "0") # Ensures day is two digits (e.g., "01" instead of "1")
       @username = options[:username].gsub(/[_\-\.\s]/, "")
+      @session = options[:session]
       @scraped_data = scraped_data
     end
 
@@ -41,6 +42,8 @@ module AdventOfCodeGenerator
     end
 
     def puzzle_description
+      return unless @session
+
       path = "#{daily_directory}/PUZZLE_DESCRIPTION.md"
       content = @scraped_data[:puzzle_description]
 
@@ -49,7 +52,7 @@ module AdventOfCodeGenerator
 
     def data_file
       path = "#{daily_directory}/data.txt"
-      return if File.exist?(path)
+      return if File.exist?(path) || !@session
 
       content = @scraped_data[:input_data]
 
