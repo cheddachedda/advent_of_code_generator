@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.8] - 2024-12-02
+
+- Use commented-out code in templates
+
 ## [0.1.7] - 2024-12-01
 
 - Change README.md to PUZZLE_DESCRIPTION.md
