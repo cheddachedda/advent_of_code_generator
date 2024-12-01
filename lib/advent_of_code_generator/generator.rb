@@ -18,6 +18,8 @@ module AdventOfCodeGenerator
   #           └── PUZZLE_DESCRIPTION.md
   #
   class Generator
+    FileData = Struct.new(:path, :content, :require_session, :allow_overwrite)
+
     def initialize(options, scraped_data)
       @year = options[:year].to_s
       @day = options[:day].to_s.rjust(2, "0") # Ensures day is two digits (e.g., "01" instead of "1")
@@ -29,10 +31,9 @@ module AdventOfCodeGenerator
     def call
       FileUtils.mkdir_p(daily_directory)
 
-      puzzle_description
-      data_file
-      main_file
-      spec_file
+      [puzzle_description, data_file, main_file, spec_file].each do |file_data|
+        generate_file(file_data)
+      end
     end
 
     private
@@ -41,28 +42,29 @@ module AdventOfCodeGenerator
       @daily_directory ||= "#{@username}/year_#{@year}/day_#{@day}"
     end
 
-    def puzzle_description
-      return unless @session
+    def generate_file(file_data)
+      return if file_data.require_session && @session.nil?
+      return if File.exist?(file_data.path) && !file_data.allow_overwrite
 
+      File.write(file_data.path, file_data.content)
+    end
+
+    def puzzle_description
       path = "#{daily_directory}/PUZZLE_DESCRIPTION.md"
       content = @scraped_data[:puzzle_description]
 
-      File.write(path, content)
+      FileData.new(path, content, true, true)
     end
 
     def data_file
       path = "#{daily_directory}/data.txt"
-      return if File.exist?(path) || !@session
-
       content = @scraped_data[:input_data]
 
-      File.write(path, content)
+      FileData.new(path, content, true, false)
     end
 
     def main_file
       path = "#{daily_directory}/day_#{@day}.rb"
-      return if File.exist?(path)
-
       content = <<~RUBY
         # frozen_string_literal: true
 
@@ -81,13 +83,11 @@ module AdventOfCodeGenerator
         end
       RUBY
 
-      File.write(path, content)
+      FileData.new(path, content, false, false)
     end
 
     def spec_file
       path = "#{daily_directory}/day_#{@day}_spec.rb"
-      return if File.exist?(path)
-
       input, expectations = @scraped_data.values_at(:test_input, :test_expectations)
       input ||= ["", ""]
       content = <<~RUBY
@@ -114,7 +114,7 @@ module AdventOfCodeGenerator
         end
       RUBY
 
-      File.write(path, content)
+      FileData.new(path, content, false, false)
     end
   end
 end
