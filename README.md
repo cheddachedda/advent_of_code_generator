@@ -1,6 +1,25 @@
 # Advent of Code Generator
 
-A Ruby gem that generates daily puzzle templates for Advent of Code.
+A Ruby gem that generates daily puzzle templates for Advent of Code with automatically scraped puzzle descriptions and input data.
+
+## Installation
+
+```sh
+gem install advent_of_code_generator
+```
+
+### Setting up your session key
+
+1. Log in to [Advent of Code](https://adventofcode.com)
+2. In your browser's developer tools, find the `session` cookie value
+   - Chrome: DevTools (F12) > Application > Cookies > adventofcode.com
+   - Firefox: DevTools (F12) > Storage > Cookies
+3. Store the session key in your environment:
+
+```sh
+# Add to your ~/.bashrc, ~/.zshrc, or equivalent
+export AOC_SESSION='your_session_key_here'
+```
 
 ## Usage
 
