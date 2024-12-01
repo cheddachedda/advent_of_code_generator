@@ -8,6 +8,16 @@ A Ruby gem that generates daily puzzle templates for Advent of Code with automat
 gem install advent_of_code_generator
 ```
 
+### Prerequisites
+
+- RSpec: This gem uses RSpec for testing. If you haven't installed it yet, run:
+
+  ```sh
+  gem install rspec
+  ```
+
+- Or optionally, set it up as you would for a normal Ruby project by adding `rspec` to your `Gemfile` and running `bundle install`.
+
 ### Setting up your session key
 
 1. Log in to [Advent of Code](https://adventofcode.com)
