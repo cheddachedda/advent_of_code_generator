@@ -31,7 +31,7 @@ module AdventOfCodeGenerator
       FileUtils.mkdir_p(daily_directory)
 
       [puzzle_description, data_file, main_file, spec_file].each do |file_data|
-        next if File.exist?(file_data.path)
+        next if File.exist?(file_data.path) && !file_data.path.include?("PUZZLE_DESCRIPTION")
 
         File.write(file_data.path, file_data.content)
       end

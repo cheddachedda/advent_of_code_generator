@@ -96,4 +96,28 @@ RSpec.describe AdventOfCodeGenerator::Generator do
       RUBY
     )
   end
+
+  context "when files already exist" do
+    it "only overwrites the puzzle description file", :aggregate_failures do
+      instance.call
+
+      # Modify the files to simulate user changes
+      File.write("username/year_2024/day_01/PUZZLE_DESCRIPTION.md", "modified code")
+      File.write("username/year_2024/day_01/day_01.rb", "modified code")
+      File.write("username/year_2024/day_01/day_01_spec.rb", "modified spec")
+
+      instance.call
+
+      # Puzzle description should be overwritten
+      expect(File.read("username/year_2024/day_01/PUZZLE_DESCRIPTION.md")).to eq(
+        <<~MARKDOWN
+          <article>Test puzzle description</article>
+        MARKDOWN
+      )
+
+      # Other files should retain their modifications
+      expect(File.read("username/year_2024/day_01/day_01.rb")).to eq("modified code")
+      expect(File.read("username/year_2024/day_01/day_01_spec.rb")).to eq("modified spec")
+    end
+  end
 end
