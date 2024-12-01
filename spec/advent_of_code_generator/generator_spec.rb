@@ -139,10 +139,10 @@ RSpec.describe AdventOfCodeGenerator::Generator do
       }
     end
 
-    it "does not create puzzle description or data files", :aggregate_failures do
+    it "does not create a data file", :aggregate_failures do
       instance.call
 
-      expect(File.exist?("username/year_2024/day_01/PUZZLE_DESCRIPTION.md")).to be false
+      expect(File.exist?("username/year_2024/day_01/PUZZLE_DESCRIPTION.md")).to be true
       expect(File.exist?("username/year_2024/day_01/data.txt")).to be false
       expect(File.exist?("username/year_2024/day_01/day_01.rb")).to be true
       expect(File.exist?("username/year_2024/day_01/day_01_spec.rb")).to be true

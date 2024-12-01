@@ -53,7 +53,7 @@ module AdventOfCodeGenerator
       path = "#{daily_directory}/PUZZLE_DESCRIPTION.md"
       content = @scraped_data[:puzzle_description]
 
-      FileData.new(path, content, true, true)
+      FileData.new(path, content, false, true)
     end
 
     def data_file
