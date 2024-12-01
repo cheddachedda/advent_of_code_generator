@@ -34,5 +34,5 @@ adventofcode/
         ├── day_01.rb
         ├── day_01_spec.rb
         ├── data.txt
-        └── README.md
+        └── PUZZLE_DESCRIPTION.md
 ```

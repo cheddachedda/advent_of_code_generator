@@ -15,7 +15,7 @@ module AdventOfCodeGenerator
   #           ├── day_01.rb
   #           ├── day_01_spec.rb
   #           ├── data.txt
-  #           └── README.md
+  #           └── PUZZLE_DESCRIPTION.md
   #
   class Generator
     FileData = Struct.new(:path, :content)
@@ -30,7 +30,7 @@ module AdventOfCodeGenerator
     def call
       FileUtils.mkdir_p(daily_directory)
 
-      [readme, data_file, main_file, spec_file].each do |file_data|
+      [puzzle_description, data_file, main_file, spec_file].each do |file_data|
         next if File.exist?(file_data.path)
 
         File.write(file_data.path, file_data.content)
@@ -43,8 +43,8 @@ module AdventOfCodeGenerator
       @daily_directory ||= "#{@username}/year_#{@year}/day_#{@day}"
     end
 
-    def readme
-      path = "#{daily_directory}/README.md"
+    def puzzle_description
+      path = "#{daily_directory}/PUZZLE_DESCRIPTION.md"
       content = @scraped_data[:puzzle_description]
 
       FileData.new(path, content)

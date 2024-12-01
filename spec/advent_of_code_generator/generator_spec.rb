@@ -16,17 +16,17 @@ RSpec.describe AdventOfCodeGenerator::Generator do
     FileUtils.rm_rf("username")
   end
 
-  it "creates a README file" do
+  it "creates a puzzle description file" do
     instance.call
 
-    expect(File.read("username/year_2024/day_01/README.md")).to eq(
+    expect(File.read("username/year_2024/day_01/PUZZLE_DESCRIPTION.md")).to eq(
       <<~MARKDOWN
         <article>Test puzzle description</article>
       MARKDOWN
     )
   end
 
-  it "creates a data.txt file" do
+  it "creates a data file" do
     instance.call
 
     expect(File.read("username/year_2024/day_01/data.txt")).to eq(
@@ -37,7 +37,7 @@ RSpec.describe AdventOfCodeGenerator::Generator do
     )
   end
 
-  it "creates a main.rb file" do
+  it "creates a main file" do
     instance.call
 
     expect(File.read("username/year_2024/day_01/day_01.rb")).to eq(
@@ -61,7 +61,7 @@ RSpec.describe AdventOfCodeGenerator::Generator do
     )
   end
 
-  it "creates a spec.rb file" do
+  it "creates a spec file" do
     instance.call
 
     expect(File.read("username/year_2024/day_01/day_01_spec.rb")).to eq(
