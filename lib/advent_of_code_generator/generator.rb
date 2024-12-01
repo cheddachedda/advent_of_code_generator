@@ -18,8 +18,6 @@ module AdventOfCodeGenerator
   #           └── PUZZLE_DESCRIPTION.md
   #
   class Generator
-    FileData = Struct.new(:path, :content)
-
     def initialize(options, scraped_data)
       @year = options[:year].to_s
       @day = options[:day].to_s.rjust(2, "0") # Ensures day is two digits (e.g., "01" instead of "1")
@@ -30,11 +28,10 @@ module AdventOfCodeGenerator
     def call
       FileUtils.mkdir_p(daily_directory)
 
-      [puzzle_description, data_file, main_file, spec_file].each do |file_data|
-        next if File.exist?(file_data.path) && !file_data.path.include?("PUZZLE_DESCRIPTION")
-
-        File.write(file_data.path, file_data.content)
-      end
+      puzzle_description
+      data_file
+      main_file
+      spec_file
     end
 
     private
@@ -47,18 +44,22 @@ module AdventOfCodeGenerator
       path = "#{daily_directory}/PUZZLE_DESCRIPTION.md"
       content = @scraped_data[:puzzle_description]
 
-      FileData.new(path, content)
+      File.write(path, content)
     end
 
     def data_file
       path = "#{daily_directory}/data.txt"
+      return if File.exist?(path)
+
       content = @scraped_data[:input_data]
 
-      FileData.new(path, content)
+      File.write(path, content)
     end
 
     def main_file
       path = "#{daily_directory}/day_#{@day}.rb"
+      return if File.exist?(path)
+
       content = <<~RUBY
         # frozen_string_literal: true
 
@@ -77,11 +78,13 @@ module AdventOfCodeGenerator
         end
       RUBY
 
-      FileData.new(path, content)
+      File.write(path, content)
     end
 
     def spec_file
       path = "#{daily_directory}/day_#{@day}_spec.rb"
+      return if File.exist?(path)
+
       input, expectations = @scraped_data.values_at(:test_input, :test_expectations)
       input ||= ["", ""]
       content = <<~RUBY
@@ -108,7 +111,7 @@ module AdventOfCodeGenerator
         end
       RUBY
 
-      FileData.new(path, content)
+      File.write(path, content)
     end
   end
 end
