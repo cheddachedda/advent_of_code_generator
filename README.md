@@ -75,11 +75,11 @@ The generator creates the following files with basic templates:
 ```ruby
 class DayXX
   def part_one(input)
-    # Your solution for part 1
+    # Your solution for Part One
   end
 
   def part_two(input)
-    # Your solution for part 2
+    # Your solution for Part Two
   end
 end
 ```
@@ -87,8 +87,31 @@ end
 ### `day_XX_spec.rb`
 
 ```ruby
-RSpec.describe DayXX do
-  # Example test cases from the puzzle
+RSpec.describe Cheddachedda::YearXXXX::DayXX do
+  it "solves Part One" do
+    input = <<~INPUT
+      1abc2
+      pqr3stu8vwx
+      a1b2c3d4e5f
+      treb7uchet
+    INPUT
+
+    expect(described_class.part_one(input)).to eq(142)
+  end
+
+  # it "solves Part Two" do
+  #   input = <<~INPUT
+  #     two1nine
+  #     eightwothree
+  #     abcone2threexyz
+  #     xtwone3four
+  #     4nineeightseven2
+  #     zoneight234
+  #     7pqrstsixteen
+  #   INPUT
+
+  #   expect(described_class.part_two(input)).to eq(281)
+  # end
 end
 ```
 

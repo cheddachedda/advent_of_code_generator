@@ -72,11 +72,11 @@ module AdventOfCodeGenerator
           module Year#{@year}
             class Day#{@day}
               def self.part_one(input)
-                raise NotImplementedError
+                # Your solution for Part One
               end
 
               def self.part_two(input)
-                raise NotImplementedError
+                # Your solution for Part Two
               end
             end
           end
@@ -104,13 +104,13 @@ module AdventOfCodeGenerator
             expect(described_class.part_one(input)).to eq(#{expectations[0]})
           end
 
-          it "solves Part Two", skip: "not implemented yet" do
-            input = <<~INPUT
-              #{input[1]&.gsub("\n", "\n      ")}
-            INPUT
+          # it "solves Part Two" do
+          #   input = <<~INPUT
+          #     #{input[1]&.gsub("\n", "\n  #     ")}
+          #   INPUT
 
-            expect(described_class.part_two(input)).to eq(#{expectations[1]})
-          end
+          #   expect(described_class.part_two(input)).to eq(#{expectations[1]})
+          # end
         end
       RUBY
 

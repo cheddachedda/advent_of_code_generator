@@ -56,11 +56,11 @@ RSpec.describe AdventOfCodeGenerator::Generator do
           module Year2024
             class Day01
               def self.part_one(input)
-                raise NotImplementedError
+                # Your solution for Part One
               end
 
               def self.part_two(input)
-                raise NotImplementedError
+                # Your solution for Part Two
               end
             end
           end
@@ -90,16 +90,16 @@ RSpec.describe AdventOfCodeGenerator::Generator do
             expect(described_class.part_one(input)).to eq(123)
           end
 
-          it "solves Part Two", skip: "not implemented yet" do
-            input = <<~INPUT
-              5
-              6
-              7
-              8
-            INPUT
+          # it "solves Part Two" do
+          #   input = <<~INPUT
+          #     5
+          #     6
+          #     7
+          #     8
+          #   INPUT
 
-            expect(described_class.part_two(input)).to eq(456)
-          end
+          #   expect(described_class.part_two(input)).to eq(456)
+          # end
         end
       RUBY
     )
