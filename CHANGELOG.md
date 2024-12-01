@@ -1,8 +1,15 @@
 # Changelog
 
+## [0.1.7] - 2024-12-01
+
+- Change README.md to PUZZLE_DESCRIPTION.md
+- Add more setup instructions to the README
+- Allow generator to overwrite PUZZLE_DESCRIPTION.md
+- Don't generate data.txt if there is no session key
+
 ## [0.1.6] - 2024-11-29
 
-- Handle <ul> and <ol> HTML elements
+- Handle HTML list elements
 
 ## [0.1.5] - 2024-11-28
 
