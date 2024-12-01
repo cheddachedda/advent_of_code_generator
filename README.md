@@ -81,3 +81,7 @@ RSpec.describe DayXX do
   # Example test cases from the puzzle
 end
 ```
+
+## Acknowledgments
+
+- Thanks to [Eric Wastl](https://twitter.com/ericwastl) for creating [Advent of Code](https://adventofcode.com)
