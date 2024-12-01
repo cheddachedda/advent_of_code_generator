@@ -55,3 +55,29 @@ adventofcode/
         ├── data.txt
         └── PUZZLE_DESCRIPTION.md
 ```
+
+## Generated File Contents
+
+The generator creates the following files with basic templates:
+
+### `day_XX.rb`
+
+```ruby
+class DayXX
+  def part_one(input)
+    # Your solution for part 1
+  end
+
+  def part_two(input)
+    # Your solution for part 2
+  end
+end
+```
+
+### `day_XX_spec.rb`
+
+```ruby
+RSpec.describe DayXX do
+  # Example test cases from the puzzle
+end
+```
