@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    aoc_generator (0.1.9)
+    aoc_generator (0.1.10)
       fileutils (~> 1.7)
       nokogiri (~> 1.16)
       thor (~> 1.3)

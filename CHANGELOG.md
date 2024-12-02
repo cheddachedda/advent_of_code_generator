@@ -1,10 +1,14 @@
 # Changelog
 
-## [0.1.9] - 2024-12-02
+## [0.1.10] - 2024-12-02
 
 - Output to stdout which files were generated
 
-## [0.1.8] - 2024-12-02
+## [0.1.9]
+
+- Fix a HTML-parsing bug for the test expectation
+
+## [0.1.8]
 
 - Use commented-out code in templates
 
