@@ -30,12 +30,10 @@ module AdventOfCodeGenerator
     end
 
     def test_expectations
-      part_descriptions
-        .flat_map { |desc| desc.scan(/\*\*`(.*?)`\*\*/) }
-        .map do |matches|
-          match = matches.first
-          match&.match?(/\A\d+\z/) ? match.to_i : match
-        end.compact
+      part_descriptions.map do |desc|
+        match = desc.scan(/\*\*`(.*?)`\*\*/).flatten.last
+        match&.match?(/\A\d+\z/) ? match.to_i : match
+      end.compact
     end
 
     def articles

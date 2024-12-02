@@ -68,6 +68,6 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
   end
 
   it "extracts test expectations from emphasised code blocks" do
-    expect(result[:test_expectations]).to eq([123, 456, "test value"])
+    expect(result[:test_expectations]).to eq([456, "test value"])
   end
 end
