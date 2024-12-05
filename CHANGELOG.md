@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.11] - 2024-12-05
+
+- Only parse the final code blocks as the test input
+
 ## [0.1.10] - 2024-12-02
 
 - Output to stdout which files were generated
