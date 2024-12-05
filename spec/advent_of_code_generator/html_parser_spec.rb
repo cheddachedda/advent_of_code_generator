@@ -9,6 +9,7 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
         <p>Here's a normal paragraph with <em>emphasised text</em> and a <a href="https://example.com">link</a>.</p>
         <p>Here's some <code>inline code</code> and <em><code>123</code></em>.</p>
         <p>Another variation with <code><em>456</em></code>.</p>
+        <pre><code>sample\ncode\nblock</code></pre>
         <pre><code>sample\ntest\ninput</code></pre>
         <ul>
           <li>First bullet point</li>
@@ -22,6 +23,7 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
       <article>
         <h2>--- Part Two ---</h2>
         <p>Part two with <code><em>test value</em></code> and more text.</p>
+        <pre><code>sample\ncode\nblock</code></pre>
         <pre><code>more\ntest\ninput</code></pre>
       </article>
     HTML
@@ -39,6 +41,12 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
 
       ```sh
       sample
+      code
+      block
+      ```
+
+      ```sh
+      sample
       test
       input
       ```
@@ -52,6 +60,12 @@ RSpec.describe AdventOfCodeGenerator::HTMLParser do
       ## --- Part Two ---
 
       Part two with **`test value`** and more text.
+
+      ```sh
+      sample
+      code
+      block
+      ```
 
       ```sh
       more

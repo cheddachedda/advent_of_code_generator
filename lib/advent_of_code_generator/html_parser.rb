@@ -26,7 +26,7 @@ module AdventOfCodeGenerator
     end
 
     def test_input
-      part_descriptions.map { |desc| desc.scan(/```sh\n(.*?)\n```/m) }.flatten
+      part_descriptions.map { |desc| desc.scan(/```sh\n(.*?)\n```/m).last }.flatten
     end
 
     def test_expectations
